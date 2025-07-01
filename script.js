@@ -38,18 +38,43 @@ function claimReward() {
 let provider, signer, contract;
 
 async function connectWallet() {
-  if (window.ethereum) {
+  if (typeof window.ethereum === "undefined") {
+    alert("🦊 Please install MetaMask to continue.");
+    return;
+  }
+
+  try {
+    const somniaChainId = "0xc470"; // 50312 in hex
+
+    // Cek jika sudah di jaringan Somnia
+    const currentChain = await ethereum.request({ method: "eth_chainId" });
+    if (currentChain !== somniaChainId) {
+      // Tambahkan jaringan Somnia
+      await ethereum.request({
+        method: "wallet_addEthereumChain",
+        params: [
+          {
+            chainId: somniaChainId,
+            chainName: "Somnia Testnet",
+            nativeCurrency: {
+              name: "Somnia Test Token",
+              symbol: "STT",
+              decimals: 18
+            },
+            rpcUrls: ["https://dream-rpc.somnia.network/"],
+            blockExplorerUrls: ["https://somnia-testnet.socialscan.io"]
+          }
+        ]
+      });
+    }
+
     provider = new ethers.providers.Web3Provider(window.ethereum);
     await provider.send("eth_requestAccounts", []);
     signer = provider.getSigner();
-    const address = await signer.getAddress();
-    alert("Wallet connected: " + address);
-
-    // Inisialisasi kontrak
-    const contractAddress = "0xYourSmartContractAddress";
-    const contractABI = [/* ABI dari kontrak */];
-    contract = new ethers.Contract(contractAddress, contractABI, signer);
-  } else {
-    alert("Please install MetaMask.");
+    walletAddress = await signer.getAddress();
+    alert("✅ Connected to Somnia! Address: " + walletAddress);
+  } catch (err) {
+    console.error("Wallet connection error:", err);
+    alert("❌ Failed to connect wallet.");
   }
 }
