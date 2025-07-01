@@ -35,3 +35,21 @@ function claimReward() {
   localStorage.setItem("rewards", JSON.stringify(rewards));
   alert(`Reward saved for ${walletAddress}. Total: ${rewards[walletAddress]}`);
 }
+let provider, signer, contract;
+
+async function connectWallet() {
+  if (window.ethereum) {
+    provider = new ethers.providers.Web3Provider(window.ethereum);
+    await provider.send("eth_requestAccounts", []);
+    signer = provider.getSigner();
+    const address = await signer.getAddress();
+    alert("Wallet connected: " + address);
+
+    // Inisialisasi kontrak
+    const contractAddress = "0xYourSmartContractAddress";
+    const contractABI = [/* ABI dari kontrak */];
+    contract = new ethers.Contract(contractAddress, contractABI, signer);
+  } else {
+    alert("Please install MetaMask.");
+  }
+}
