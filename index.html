@@ -6,6 +6,49 @@
   <title>Lucky Tap Game</title>
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+  body {
+    background: repeating-linear-gradient(
+      45deg,
+      #ff99cc,
+      #ff99cc 20px,
+      #99ccff 20px,
+      #99ccff 40px
+    );
+    background-size: 40px 40px;
+    font-family: sans-serif;
+    color: white;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  }
+
+  button {
+    background-color: #ffffff22;
+    color: white;
+    padding: 10px 20px;
+    margin: 8px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #ffffff55;
+  }
+</style>
+
 </head>
 <body class="bg-gray-900 text-white flex flex-col items-center justify-center h-screen">
   <h1 class="text-4xl font-bold mb-4">🎯 Lucky Tap</h1>
