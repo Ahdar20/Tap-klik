@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lucky Tap Game</title>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white flex flex-col items-center justify-center h-screen">
+  <h1 class="text-4xl font-bold mb-4">🎯 Lucky Tap</h1>
+  
+  <button onclick="playGame()" class="bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-xl text-xl mb-6">Tap!</button>
+  
+  <div id="result" class="text-2xl mb-4"></div>
+
+  <button onclick="connectWallet()" class="bg-green-500 px-4 py-2 rounded mb-4">Connect Wallet</button>
+  <button onclick="claimReward()" class="bg-yellow-500 px-4 py-2 rounded">Claim Reward</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
