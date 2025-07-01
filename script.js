@@ -22,12 +22,10 @@ async function connectWallet() {
   try {
     const somniaChainId = "0xc470"; // 50312 in hex
 
-    // Cek jika sudah di jaringan Somnia
     const currentChain = await ethereum.request({ method: "eth_chainId" });
     if (currentChain !== somniaChainId) {
-      // Tambahkan jaringan Somnia
       await ethereum.request({
-        method: "wallet_addEthereumChain",
+        method: "wallet_addsomniaChain",
         params: [
           {
             chainId: somniaChainId,
