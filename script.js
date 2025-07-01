@@ -14,30 +14,6 @@ function playGame() {
 }
 
 async function connectWallet() {
-  if (typeof window.ethereum !== "undefined") {
-    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
-    walletAddress = accounts[0];
-    alert("Connected: " + walletAddress);
-  } else {
-    alert("Please install MetaMask.");
-  }
-}
-
-function claimReward() {
-  if (!walletAddress) {
-    alert("Connect your wallet first.");
-    return;
-  }
-
-  const rewards = JSON.parse(localStorage.getItem("rewards") || "{}");
-  rewards[walletAddress] = (rewards[walletAddress] || 0) + 1;
-
-  localStorage.setItem("rewards", JSON.stringify(rewards));
-  alert(`Reward saved for ${walletAddress}. Total: ${rewards[walletAddress]}`);
-}
-let provider, signer, contract;
-
-async function connectWallet() {
   if (typeof window.ethereum === "undefined") {
     alert("🦊 Please install MetaMask to continue.");
     return;
